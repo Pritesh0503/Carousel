@@ -1,23 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import InfiniteCarousel from 'react-leaf-carousel'
+import Card from './cards'
+import Data from './data.json'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <InfiniteCarousel
+    breakpoints={[
+      {
+        breakpoint: 500,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+        },
+      },
+    ]}
+    dots={false}
+    showSides={true}
+    sidesOpacity={0.5}
+    sideSize={0.1}
+    slidesToScroll={1}
+    slidesToShow={4}
+    scrollOnDevice={true}
+  >
+  {Data.carouselData.map((cardData)=><Card data={cardData}/>)}
+  </InfiniteCarousel>
     </div>
   );
 }
